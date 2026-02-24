@@ -30,4 +30,4 @@ services:
     staticPublishPath: ./SexShop.Frontend/dist
     envVars:
       - key: VITE_API_URL
-        value: https://sexshop-api.onrender.com
+        value: https://sexshop-api-l6qy.onrender.com
