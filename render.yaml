@@ -6,6 +6,7 @@ services:
   # SexShop API
   - type: web
     name: sexshop-api
+    plan: free
     runtime: docker
     dockerContext: .
     dockerfilePath: SexShop.API/Dockerfile
