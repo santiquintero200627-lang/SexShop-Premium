@@ -1,0 +1,12 @@
+**/.git
+**/.vs
+**/.vscode
+**/bin
+**/obj
+**/node_modules
+**/dist
+SexShop.Frontend/node_modules
+SexShop.Frontend/dist
+*.db
+*.db-shm
+*.db-wal

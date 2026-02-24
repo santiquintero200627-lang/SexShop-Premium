@@ -1,0 +1,32 @@
+databases:
+  - name: sexshop-db
+    plan: free
+
+services:
+  # SexShop API
+  - type: web
+    name: sexshop-api
+    runtime: docker
+    dockerContext: .
+    dockerfilePath: SexShop.API/Dockerfile
+    envVars:
+      - key: ASPNETCORE_URLS
+        value: http://+:8080
+      - key: UseSqlite
+        value: "false"
+      - key: UsePostgres
+        value: "true"
+      - key: ConnectionStrings__PostgresConnection
+        fromDatabase:
+          name: sexshop-db
+          property: connectionString
+
+  # SexShop Frontend (Vite)
+  - type: web
+    name: sexshop-frontend
+    runtime: static
+    buildCommand: cd SexShop.Frontend && npm install && npm run build
+    publishPath: ./SexShop.Frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://sexshop-api.onrender.com
