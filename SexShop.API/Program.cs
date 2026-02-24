@@ -43,6 +43,13 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// Endpoint de Bienvenida para evitar 404 en el Home
+app.MapGet("/", () => Results.Json(new { 
+    message = "SexShop Premium API is Live", 
+    status = "Healthy",
+    time = DateTime.UtcNow 
+}));
+
 // Seed Data
 using (var scope = app.Services.CreateScope())
 {
