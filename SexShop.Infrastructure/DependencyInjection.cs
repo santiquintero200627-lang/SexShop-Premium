@@ -20,7 +20,7 @@ namespace SexShop.Infrastructure
         {
             if (configuration.GetValue<bool>("UsePostgres"))
             {
-                var connectionString = configuration.GetConnectionString("PostgresConnection");
+                var connectionString = configuration.GetConnectionString("PostgresConnection")?.Trim();
                 
                 if (string.IsNullOrEmpty(connectionString))
                 {
@@ -31,15 +31,23 @@ namespace SexShop.Infrastructure
                     try 
                     {
                         var uri = new Uri(connectionString);
-                        var userInfo = uri.UserInfo.Split(':');
-                        var username = Uri.UnescapeDataString(userInfo[0]);
-                        var password = userInfo.Length > 1 ? Uri.UnescapeDataString(userInfo[1]) : "";
                         var host = uri.Host;
-                        var port = uri.Port;
+                        var port = uri.Port > 0 ? uri.Port : 5432;
                         var database = Uri.UnescapeDataString(uri.AbsolutePath.TrimStart('/'));
+                        
+                        string username = "";
+                        string password = "";
+                        
+                        if (!string.IsNullOrEmpty(uri.UserInfo))
+                        {
+                            var userInfo = uri.UserInfo.Split(':');
+                            username = Uri.UnescapeDataString(userInfo[0]);
+                            if (userInfo.Length > 1) 
+                                password = Uri.UnescapeDataString(userInfo[1]);
+                        }
 
                         connectionString = $"Host={host};Port={port};Database={database};Username={username};Password={password};SSL Mode=Require;Trust Server Certificate=true";
-                        Console.WriteLine($"--> Postgres URI parsed successfully for host: {host}");
+                        Console.WriteLine($"--> Postgres URI parsed: host={host}, port={port}, db={database}");
                     }
                     catch (Exception ex)
                     {
@@ -49,7 +57,6 @@ namespace SexShop.Infrastructure
                 else
                 {
                     Console.WriteLine("--> Standard Postgres connection string detected.");
-                    // Ensure SSL for production if it's not a URI but a standard string
                     if (!connectionString.Contains("SSL Mode", StringComparison.OrdinalIgnoreCase))
                     {
                         connectionString += ";SSL Mode=Require;Trust Server Certificate=true";
