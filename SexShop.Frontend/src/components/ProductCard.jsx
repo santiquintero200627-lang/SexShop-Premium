@@ -9,7 +9,9 @@ const ProductCard = ({ product, addToCart }) => {
         >
             <div className="position-relative overflow-hidden" style={{ height: '280px' }}>
                 <img
-                    src={product.imageUrl || 'https://via.placeholder.com/300x400?text=SexShop'}
+                    src={product.imageUrl
+                        ? (product.imageUrl.startsWith('http') ? product.imageUrl : `https://via.placeholder.com/${product.imageUrl}`)
+                        : 'https://via.placeholder.com/300x400?text=SexShop'}
                     alt={product.name}
                     className="w-100 h-100 object-fit-cover transition-transform"
                     loading="lazy"

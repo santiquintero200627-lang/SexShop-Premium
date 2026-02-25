@@ -34,7 +34,7 @@ const Login = ({ setUser }) => {
                 animate={{ opacity: 1, scale: 1 }}
             >
                 <div className="text-center mb-4">
-                    <h2 className="fw-bold">Entrar a Olove</h2>
+                    <h2 className="fw-bold text-accent">SexShop Premium</h2>
                     <p className="text-muted">Accede a tu cuenta premium</p>
                 </div>
 
