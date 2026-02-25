@@ -21,3 +21,11 @@ services:
         fromDatabase:
           name: sexshop-db
           property: connectionString
+      - key: JwtSettings__Key
+        value: "Un_Secret_Muy_Largo_Y_Seguro_Para_SexShop_Pro_2024"
+      - key: JwtSettings__Issuer
+        value: "SexShopPro"
+      - key: JwtSettings__Audience
+        value: "SexShopPro"
+      - key: JwtSettings__DurationInMinutes
+        value: "1440"
