@@ -208,3 +208,6 @@ C:\Users\santi\OneDrive\Escritorio\3170247\Johan\SexShop ultimo bueno\sexshop2\a
 C:\Users\santi\OneDrive\Escritorio\3170247\Johan\SexShop ultimo bueno\sexshop2\articulos\SexShop.Web\obj\Debug\net8.0\SexShop.Web.pdb
 C:\Users\santi\OneDrive\Escritorio\3170247\Johan\SexShop ultimo bueno\sexshop2\articulos\SexShop.Web\obj\Debug\net8.0\SexShop.Web.genruntimeconfig.cache
 C:\Users\santi\OneDrive\Escritorio\3170247\Johan\SexShop ultimo bueno\sexshop2\articulos\SexShop.Web\obj\Debug\net8.0\ref\SexShop.Web.dll
+C:\Users\ALVAR\Downloads\articulos\articulos\SexShop.Web\obj\Debug\net8.0\SexShop.Web.dll
+C:\Users\ALVAR\Downloads\articulos\articulos\SexShop.Web\obj\Debug\net8.0\refint\SexShop.Web.dll
+C:\Users\ALVAR\Downloads\articulos\articulos\SexShop.Web\obj\Debug\net8.0\SexShop.Web.pdb

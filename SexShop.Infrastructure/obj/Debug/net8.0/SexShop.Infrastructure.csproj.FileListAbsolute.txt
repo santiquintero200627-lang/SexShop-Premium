@@ -87,6 +87,7 @@ C:\Users\ALVAR\Downloads\articulos\articulos\SexShop.Infrastructure\obj\Debug\ne
 C:\Users\ALVAR\Downloads\articulos\articulos\SexShop.Infrastructure\obj\Debug\net8.0\SexShop.Infrastructure.AssemblyInfoInputs.cache
 C:\Users\ALVAR\Downloads\articulos\articulos\SexShop.Infrastructure\obj\Debug\net8.0\SexShop.Infrastructure.AssemblyInfo.cs
 C:\Users\ALVAR\Downloads\articulos\articulos\SexShop.Infrastructure\obj\Debug\net8.0\SexShop.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\ALVAR\Downloads\articulos\articulos\SexShop.Infrastructure\obj\Debug\net8.0\SexShop.Infrastructure.sourcelink.json
 C:\Users\ALVAR\Downloads\articulos\articulos\SexShop.Infrastructure\obj\Debug\net8.0\SexShop..A766A2F9.Up2Date
 C:\Users\ALVAR\Downloads\articulos\articulos\SexShop.Infrastructure\obj\Debug\net8.0\SexShop.Infrastructure.dll
 C:\Users\ALVAR\Downloads\articulos\articulos\SexShop.Infrastructure\obj\Debug\net8.0\refint\SexShop.Infrastructure.dll
