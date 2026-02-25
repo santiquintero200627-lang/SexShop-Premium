@@ -1,5 +1,5 @@
 databases:
-  - name: sexshop-db
+  - name: sexshop-db-final
     plan: free
 
 services:
@@ -19,7 +19,7 @@ services:
         value: "true"
       - key: ConnectionStrings__PostgresConnection
         fromDatabase:
-          name: sexshop-db
+          name: sexshop-db-final
           property: connectionString
       - key: JwtSettings__Key
         value: "Un_Secret_Muy_Largo_Y_Seguro_Para_SexShop_Pro_2024"
