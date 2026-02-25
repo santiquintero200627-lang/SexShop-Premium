@@ -21,9 +21,25 @@ namespace SexShop.Infrastructure
             // DbContext
             if (configuration.GetValue<bool>("UsePostgres"))
             {
+                var connectionString = configuration.GetConnectionString("PostgresConnection");
+
+                // Handle Render's DATABASE_URL format (postgres://...)
+                if (connectionString != null && connectionString.StartsWith("postgres://"))
+                {
+                    var uri = new Uri(connectionString);
+                    var userInfo = uri.UserInfo.Split(':');
+                    var host = uri.Host;
+                    var port = uri.Port;
+                    var database = uri.AbsolutePath.TrimStart('/');
+                    var username = userInfo[0];
+                    var password = userInfo[1];
+
+                    connectionString = $"Host={host};Port={port};Database={database};Username={username};Password={password};SSL Mode=Require;Trust Server Certificate=true";
+                }
+
                 services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseNpgsql(
-                        configuration.GetConnectionString("PostgresConnection"),
+                        connectionString,
                         b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
             }
             else if (configuration.GetValue<bool>("UseSqlite"))
