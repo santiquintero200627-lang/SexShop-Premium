@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SexShop.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+64b0edefb33c7ff48827b3cd7803e7506f959f05")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+542ea97715d62a32921fea0c2c7055ea4e65ed5f")]
 [assembly: System.Reflection.AssemblyProductAttribute("SexShop.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SexShop.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

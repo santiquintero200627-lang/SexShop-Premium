@@ -18,23 +18,42 @@ namespace SexShop.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            // DbContext
             if (configuration.GetValue<bool>("UsePostgres"))
             {
                 var connectionString = configuration.GetConnectionString("PostgresConnection");
-
-                // Handle Render's DATABASE_URL format (postgres://...)
-                if (connectionString != null && connectionString.StartsWith("postgres://"))
+                
+                if (string.IsNullOrEmpty(connectionString))
                 {
-                    var uri = new Uri(connectionString);
-                    var userInfo = uri.UserInfo.Split(':');
-                    var host = uri.Host;
-                    var port = uri.Port;
-                    var database = uri.AbsolutePath.TrimStart('/');
-                    var username = userInfo[0];
-                    var password = userInfo[1];
+                    Console.WriteLine("--> ERROR: PostgresConnection string is NULL or EMPTY");
+                }
+                else if (connectionString.StartsWith("postgres://") || connectionString.StartsWith("postgresql://"))
+                {
+                    try 
+                    {
+                        var uri = new Uri(connectionString);
+                        var userInfo = uri.UserInfo.Split(':');
+                        var username = Uri.UnescapeDataString(userInfo[0]);
+                        var password = userInfo.Length > 1 ? Uri.UnescapeDataString(userInfo[1]) : "";
+                        var host = uri.Host;
+                        var port = uri.Port;
+                        var database = Uri.UnescapeDataString(uri.AbsolutePath.TrimStart('/'));
 
-                    connectionString = $"Host={host};Port={port};Database={database};Username={username};Password={password};SSL Mode=Require;Trust Server Certificate=true";
+                        connectionString = $"Host={host};Port={port};Database={database};Username={username};Password={password};SSL Mode=Require;Trust Server Certificate=true";
+                        Console.WriteLine($"--> Postgres URI parsed successfully for host: {host}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"--> ERROR parsing Postgres URI: {ex.Message}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("--> Standard Postgres connection string detected.");
+                    // Ensure SSL for production if it's not a URI but a standard string
+                    if (!connectionString.Contains("SSL Mode", StringComparison.OrdinalIgnoreCase))
+                    {
+                        connectionString += ";SSL Mode=Require;Trust Server Certificate=true";
+                    }
                 }
 
                 services.AddDbContext<ApplicationDbContext>(options =>
